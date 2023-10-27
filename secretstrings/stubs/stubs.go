@@ -1,8 +1,7 @@
 package stubs
 
-var ReverseHandler = "SecretStringOperations.Reverse"
-var PremiumReverseHandler = "SecretStringOperations.FastReverse"
-
+var ReverseHandler = "SecretStringOperation.Reverse"
+var PremiumReverseHandler = "SecretStringOperation.FastReverse"
 
 type Response struct {
 	Message string
@@ -11,5 +10,3 @@ type Response struct {
 type Request struct {
 	Message string
 }
-
-
