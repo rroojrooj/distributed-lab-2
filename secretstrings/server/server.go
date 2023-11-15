@@ -28,15 +28,16 @@ func (s *SecretStringOperation) Reverse(req stubs.Request, res *stubs.Response) 
 
 func (s *SecretStringOperation) FastReverse(req stubs.Request, res *stubs.Response) (err error) {
 	res.Message = ReverseString(req.Message, 2) //decrease the delay that get passed to ReverseString()
+	// res.Message is the RESPONSE para stubs. req.message is the REQUEST para stubs
 	return
 }
 
 func main() { //Listen for indications from the client on calling the func (s *SecretStringOperation), and will handle the communications by the listener.
-	pAddr := flag.String("port", "8030", "Port to listen on")
+	pAddr := flag.String("port", "8030", "Port to listen on") // Server accepts some configs
 	flag.Parse()
-	rand.Seed(time.Now().UnixNano())
+	rand.Seed(time.Now().UnixNano()) // for reverse string implement
 	rpc.Register(&SecretStringOperation{})
-	listener, _ := net.Listen("tcp", ":"+*pAddr)
+	listener, _ := net.Listen("tcp", ":"+*pAddr) // create a listener, listens fos commu in TCP port
 	defer listener.Close()
 	rpc.Accept(listener)
 }
